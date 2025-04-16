@@ -32,4 +32,4 @@ chmod +x /docker-entrypoint.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["/docker-entrypoint.sh"] 
+ENTRYPOINT ["/bin/sh", "/docker-entrypoint.sh"] 
