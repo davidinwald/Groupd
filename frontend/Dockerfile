@@ -21,15 +21,9 @@ RUN apk add --no-cache gettext
 # Copy built assets from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf.template
-
-# Create startup script
-RUN echo '#!/bin/sh\n\
-envsubst "\$BACKEND_URL" < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf\n\
-exec nginx -g "daemon off;"' > /docker-entrypoint.sh && \
-chmod +x /docker-entrypoint.sh
+# Copy nginx configuration template
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 EXPOSE 80
 
-ENTRYPOINT ["/docker-entrypoint.sh"] 
+# Use nginx's built-in entrypoint which handles template substitution 
