@@ -8,8 +8,8 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Get allowed origins from environment variable
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+# Get allowed origins from environment variable, default to frontend URL
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "https://groupd-frontend-yyov4.ondigitalocean.app").split(",")
 
 # Configure CORS
 app.add_middleware(
