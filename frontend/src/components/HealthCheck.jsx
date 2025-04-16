@@ -10,9 +10,8 @@ const HealthCheck = () => {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        // Use relative path in production, full URL in development
-        const apiUrl = import.meta.env.DEV ? "http://localhost:8000" : "/api";
-
+        // Use the environment variable for the API URL
+        const apiUrl = import.meta.env.VITE_API_URL || "/api";
         console.log("Checking health at:", apiUrl);
         const response = await axios.get(`${apiUrl}/health`);
         setHealthStatus(response.data.status);

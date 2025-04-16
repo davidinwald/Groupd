@@ -3,7 +3,7 @@ FROM node:18-alpine as builder
 WORKDIR /app
 
 # Add build-time arguments
-ARG VITE_API_URL
+ARG VITE_API_URL=https://groupd-backend-sml5l.ondigitalocean.app
 
 # Copy package files
 COPY package*.json ./
