@@ -13,10 +13,7 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
-
-# Install envsubst for environment variable substitution
-RUN apk add --no-cache gettext
+FROM nginx:1.25-alpine
 
 # Copy built assets from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
